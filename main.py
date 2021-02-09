@@ -5,30 +5,29 @@ from kivy.uix.textinput import TextInput
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 
-Builder.load_string("""
-<MenuScreen>:
-    BoxLayout:
-        Button:
-            text: 'Goto login'
-            on_press: root.manager.current = 'login'
-        Button:
-            text: 'Quit'
-""")
 
-class MenuScreen(Screen):
-    pass
+class MyGrid(GridLayout):
+    def __init__(self, **kwargs):
+        super(MyGrid,self).__init__(**kwargs)
+        self.cols = 6
+        self.add_widget(Label(text ="Name= "))
+        self.name = TextInput(multiline=False)
+        self.add_widget(self.name)
 
-class Login(Screen):
-    pass
+        self.add_widget(Label(text="Name= "))
+        self.name = TextInput(multiline=False)
+        self.add_widget(self.name)
+
+        self.add_widget(Label(text="Name= "))
+        self.name = TextInput(multiline=False)
+        self.add_widget(self.name)
+
 
 
 class MyApp(App):
 
     def build(self):
-        sm = ScreenManager()
-        sm.add_widget(MenuScreen(name='menu'))
-        sm.add_widget(Login(name='login'))
-        return sm
+        return MyGrid()
 
 if __name__ == '__main__':
     MyApp().run()
