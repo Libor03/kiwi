@@ -1,0 +1,91 @@
+WindowManager:
+    Menu:
+    Auth:
+
+<Menu>
+    canvas.before:
+        Color:
+            rgba: 25/255.0, 100/255.0, 85/255.0, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    name: "Menu"
+    FloatLayout:
+        size_hint: (None,None)
+        size: root.width, root.height
+
+    Label:
+        text: 'Přihlášení'
+        font_size: 80
+        pos_hint:{"x":0.33,"y":0.7}
+        size_hint: (None, None)
+        size: (300, 100)
+
+
+    GridLayout:
+        cols: 1
+        size_hint: (None,None)
+        size: 500, 100
+        pos: 75, 290
+        GridLayout:
+            cols: 2
+            spacing: 15
+            Label:
+                text: "Jméno:"
+                font_size: 30
+
+            TextInput:
+                multinline:False
+
+            Label:
+                text: "Heslo:"
+                font_size: 30
+
+            TextInput:
+                multiline: False
+                password:True
+
+
+    Button:
+        text: 'Přihlásit se'
+        pos_hint: {'x': 0.35, 'y': 0.2}
+        on_release:
+            app.root.current = "Auth"
+            root.manager.transition.direction = "left"
+
+
+<Auth>
+    canvas.before:
+        Color:
+            rgba: 25/255.0, 100/255.0, 85/255.0, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    name: "Auth"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        spacing: 20      
+
+        Button:
+            text: 'Vrátit se zpět'
+
+            on_release:
+                app.root.current = "Menu"
+                root.manager.transition.direction = "right"
+
+    FloatLayout:
+        size: root.width, root.height
+
+    Label:
+        text: 'Placeholder text'
+        font_size: 100
+        pos_hint:{"x":0.33,"y":0.60}
+        size_hint: (None, None)
+        size: (300, 100)
+
+<Button>
+    size_hint: (0.3, None)
+    background_color: (25/255.0, 100/255.0, 85/255.0, 1)
+    font_size: 30
